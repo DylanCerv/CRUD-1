@@ -1,17 +1,27 @@
 <?php 
 require_once "template/header.php";
 require_once "template/footer.php";
+require_once "model/conexion.php";
 ?>
 
+<?php 
+
+
+
+$sentencia = $conexion -> query('SELECT * FROM persona');
+$persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
+//print_r($persona);
+
+
+?>
+
+
 <div class="container mt-5">
-
-
     <div class="row justify-content-center">
-
         <div class="col-md-7">
             <div class="card">
                 <div class="card-header text-center">
-                    Lista de Personas
+                    <b>Lista de Personas</b>
                 </div>
                 <div class="p-4">
                     <table class="table align-middle">
@@ -20,35 +30,25 @@ require_once "template/footer.php";
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Edad</th>
-                                <th scope="col">Signo</th>
-                                <th scope="col" colspan="2">Opciones</th>
+                                <th scope="col">Pais</th>
+                                <th class="text-center" scope="col" colspan="2">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                                foreach($persona as $datos){ //persona es el nombre de la tabla de la BD
+                            ?>
                             <tr>
-                                <td scope="row">1</td>
-                                <td>Dylan España</td>
-                                <td>17</td>
-                                <td>Tauro</td>
-                                <td>Editar</td>
-                                <td>Eliminar</td>
+                                <td scope="row"><?php echo $datos->id_codigo; ?></td> <!--IMPRIMIMOS EL TADO DE LA COLUMNA DESEADA-->
+                                <td><?php echo $datos->nombre; ?></td>
+                                <td><?php echo $datos->edad; ?></td>
+                                <td><?php echo $datos->pais; ?></td>
+                                <td class="text-center">Editar</td>
+                                <td class="text-center">Eliminar</td>
                             </tr>
-                            <tr>
-                                <td scope="row">1</td>
-                                <td>Dylan España</td>
-                                <td>17</td>
-                                <td>Tauro</td>
-                                <td>Editar</td>
-                                <td>Eliminar</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">1</td>
-                                <td>Dylan España</td>
-                                <td>17</td>
-                                <td>Tauro</td>
-                                <td>Editar</td>
-                                <td>Eliminar</td>
-                            </tr>
+                            <?php
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -57,7 +57,7 @@ require_once "template/footer.php";
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header text-center">
-                    Ingresar Datos
+                    <b>Ingresar Datos</b>
                 </div>
                 <form action="" class="p-4" method="POST" action="registro.php">
                     <div class="mb-3">
@@ -69,7 +69,7 @@ require_once "template/footer.php";
                         <input type="number" class="form-control" name="txtEdad" autofocus>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Signo</label>
+                        <label class="form-label">Pais</label>
                         <input type="text" class="form-control" name="txtSigno" autofocus>
                     </div>
                     <!--PARA LOS BOTONES-->
@@ -82,7 +82,4 @@ require_once "template/footer.php";
         </div>
     
     </div>
-
-
-
 </div>
