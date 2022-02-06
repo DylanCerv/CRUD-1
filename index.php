@@ -59,9 +59,23 @@ require_once "template/footer.php";
                 <div class="card-header text-center">
                     Ingresar Datos
                 </div>
-                <form action="" class="p-4" method="POST" action="registrar.php">
-                    <div class="class mb-3">
-                        <label class=""></label>
+                <form action="" class="p-4" method="POST" action="registro.php">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="txtNombre" autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Edad</label>
+                        <input type="number" class="form-control" name="txtEdad" autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Signo</label>
+                        <input type="text" class="form-control" name="txtSigno" autofocus>
+                    </div>
+                    <!--PARA LOS BOTONES-->
+                    <div class="d-grid">
+                    <input type="hidden" name="oculto" value="1">
+                        <input type="submit" class="btn btn-primary" value="Registrar">
                     </div>
                 </form>
             </div>
