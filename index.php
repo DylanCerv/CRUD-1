@@ -42,7 +42,7 @@ $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
                 }
             ?>
 
-            <!--EDITAR-ERROR (CODIGO DE LA PERSONA-VIA POST)-->
+            <!--EDITAR-ELIMINAR-ERROR (CODIGO DE LA PERSONA-VIA POST)-->
             <?php 
                 if(isset($_GET['mensaje']) AND $_GET['mensaje']=='error'){
             ?>
@@ -66,10 +66,22 @@ $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
                 }
             ?>
 
+            <!--ELIMINACIÓN EXITOSA-SUCCESS (TABLA)-->
+            <?php 
+                if(isset($_GET['mensaje']) AND $_GET['mensaje']=='eliminado'){
+            ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>La informacion se ha eliminado exitosamente</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            <?php
+                }
+            ?>
+
             <!--===============================================================
                         ALERTAS FIN
             ================================================================-->
-            
+
             <div class="card">
                 <div class="card-header text-center">
                     <b>Lista de Personas</b>
@@ -94,8 +106,9 @@ $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
                                 <td><?php echo $datos->nombre; ?></td>
                                 <td><?php echo $datos->edad; ?></td>
                                 <td><?php echo $datos->pais; ?></td>
-                                <td class="text-center text-success"><a href="editar.php?codigo=<?php echo $datos->id_codigo; ?>"><i class="bi bi-pencil-square"></i></a></td>
-                                <td class="text-center text-danger"><i class="bi bi-calendar2-x"></i></td>
+                                <td class="text-center"><a href="editar.php?codigo=<?php echo $datos->id_codigo; ?>"><i class="bi bi-pencil-square text-success"></i></a></td>
+                                <td class="text-centerr"><a href="eliminar.php?codigo=<?php echo $datos->id_codigo; ?>"><i class="bi bi-calendar2-x text-danger"></i></a></td>
+                                
                             </tr>
                             <?php
                                 }
