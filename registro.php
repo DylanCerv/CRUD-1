@@ -16,9 +16,9 @@ $edad = $_POST['txtEdad'];
 $pais = $_POST['txtPais'];
 
 $sentencia = $conexion->prepare('INSERT INTO persona(nombre, edad, pais) VALUES(?,?,?);');
-$resultado = $sentencia->execute([$nombre,$edad,$pais]);
+$ejecutar = $sentencia->execute([$nombre,$edad,$pais]);
 
-if ($resultado === TRUE) {
+if ($ejecutar === TRUE) {
     header('Location: index.php?mensaje=registrado');
 }else {
     header('Location: index.php?mensaje=error');

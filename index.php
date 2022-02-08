@@ -5,21 +5,20 @@ require_once "model/conexion.php";
 ?>
 
 <?php 
-
-
-
 $sentencia = $conexion -> query('SELECT * FROM persona');
 $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
 //print_r($persona);
-
-
 ?>
 
 
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-7">
-            <!--ALERTAS INICIO-->
+            <!--===============================================================
+                        ALERTAS INICIO
+            ================================================================-->
+            
+            <!--CAMPOS SIN RELLENAR-ERROR (FORMULARIO)-->
             <?php 
                 if(isset($_GET['mensaje']) AND $_GET['mensaje']=='falta-datos'){
             ?>
@@ -30,6 +29,8 @@ $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
             <?php
                 }
             ?>
+
+            <!--REGISTRO EXITOSO-SUCCESS (FORMULARIO)-->
             <?php 
                 if(isset($_GET['mensaje']) AND $_GET['mensaje']=='registrado'){
             ?>
@@ -40,7 +41,35 @@ $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
             <?php
                 }
             ?>
-            <!--ALERTAS FIN-->
+
+            <!--EDITAR-ERROR (CODIGO DE LA PERSONA-VIA POST)-->
+            <?php 
+                if(isset($_GET['mensaje']) AND $_GET['mensaje']=='error'){
+            ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>ERROR: </strong> Vuelve a intentar
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            <?php
+                }
+            ?>
+
+            <!--EDICIÓN EXITOSA-SUCCESS (TABLA)-->
+            <?php 
+                if(isset($_GET['mensaje']) AND $_GET['mensaje']=='editado'){
+            ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>La informacion se ha editado exitosamente</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            <?php
+                }
+            ?>
+
+            <!--===============================================================
+                        ALERTAS FIN
+            ================================================================-->
+            
             <div class="card">
                 <div class="card-header text-center">
                     <b>Lista de Personas</b>
@@ -65,8 +94,8 @@ $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
                                 <td><?php echo $datos->nombre; ?></td>
                                 <td><?php echo $datos->edad; ?></td>
                                 <td><?php echo $datos->pais; ?></td>
-                                <td class="text-center">Editar</td>
-                                <td class="text-center">Eliminar</td>
+                                <td class="text-center text-success"><a href="editar.php?codigo=<?php echo $datos->id_codigo; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td class="text-center text-danger"><i class="bi bi-calendar2-x"></i></td>
                             </tr>
                             <?php
                                 }
