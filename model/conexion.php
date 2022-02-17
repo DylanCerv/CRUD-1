@@ -1,12 +1,12 @@
 <?php
 
-$nombreBD= 'crud_registro_persona';
-$userName = 'root';
-$password = 'root';
+$nombreBD= 'id18453814_proyectos'; //crud_registro_persona
+$userName = 'id18453814_root';
+$password = '[WvqoiwXk0*]R<*%';
 
 try {
     $conexion = new PDO(
-        'mysql:host=localhost:3307;
+        'mysql:host=localhost;
         dbname='.$nombreBD,
         $userName,
         $password,
