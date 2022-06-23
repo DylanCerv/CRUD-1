@@ -10,18 +10,18 @@ if (empty($_POST['oculto']) OR empty($_POST['txtNombre']) OR empty($_POST['txtEd
 
 
 
-require_once "model/conexion.php";
+require_once "../conexion/conexion.php";
 $nombre = $_POST['txtNombre'];
 $edad = $_POST['txtEdad'];
 $pais = $_POST['txtPais'];
 
-$sentencia = $conexion->prepare('INSERT INTO persona(nombre, edad, pais) VALUES(?,?,?);');
+$sentencia = $DB->prepare('INSERT INTO persona(nombre, edad, pais) VALUES(?,?,?);');
 $ejecutar = $sentencia->execute([$nombre,$edad,$pais]);
 
 if ($ejecutar === TRUE) {
-    header('Location: index.php?mensaje=registrado');
+    header('Location: ../../index.php?mensaje=registrado');
 }else {
-    header('Location: index.php?mensaje=error');
+    header('Location: ../../index.php?mensaje=error');
     exit();
 }
 

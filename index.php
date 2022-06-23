@@ -1,11 +1,9 @@
 <?php 
-require_once "template/header.php";
-require_once "template/footer.php";
-require_once "model/conexion.php";
-?>
+require_once "src/page/template/header.php";
+require_once "src/page/template/footer.php";
+require_once "src/conexion/conexion.php";
 
-<?php 
-$sentencia = $conexion -> query('SELECT * FROM persona');
+$sentencia = $DB -> query('SELECT * FROM persona');
 $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
 //print_r($persona);
 ?>
@@ -82,7 +80,7 @@ $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
                         ALERTAS FIN
             ================================================================-->
 
-            <div class="card">
+            <div class="card table-card">
                 <div class="card-header text-center">
                     <b>Lista de Personas</b>
                 </div>
@@ -106,8 +104,8 @@ $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
                                 <td><?php echo $datos->nombre; ?></td>
                                 <td><?php echo $datos->edad; ?></td>
                                 <td><?php echo $datos->pais; ?></td>
-                                <td class="text-center"><a href="editar.php?codigo=<?php echo $datos->id_codigo; ?>"><i class="bi bi-pencil-square text-success"></i></a></td>
-                                <td class="text-centerr"><a href="eliminar.php?codigo=<?php echo $datos->id_codigo; ?>"><i class="bi bi-calendar2-x text-danger"></i></a></td>
+                                <td class="text-center"><a href="src/page/editar.php?codigo=<?php echo $datos->id_codigo; ?>"><i class="bi bi-pencil-square text-success"></i></a></td>
+                                <td class="text-centerr"><a href="src/validation/eliminar.php?codigo=<?php echo $datos->id_codigo; ?>"><i class="bi bi-calendar2-x text-danger"></i></a></td>
                                 
                             </tr>
                             <?php
@@ -123,7 +121,7 @@ $persona = $sentencia -> fetchAll(PDO::FETCH_OBJ);
                 <div class="card-header text-center">
                     <b>Ingresar Datos</b>
                 </div>
-                <form class="p-4" method="POST" action="registro.php">
+                <form class="p-4" method="POST" action="src/validation/registro.php">
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="txtNombre" autofocus required>

@@ -13,9 +13,9 @@ if (!isset($_GET['codigo'])){
 
 
 
-include_once "model/conexion.php";
+include_once "../conexion/conexion.php";
 $codigo = $_GET['codigo'];
-$sentencia = $conexion->prepare('SELECT * FROM persona WHERE id_codigo = ?;');
+$sentencia = $DB->prepare('SELECT * FROM persona WHERE id_codigo = ?;');
 $sentencia->execute([$codigo]);
 $persona = $sentencia->fetch(PDO::FETCH_OBJ);
 //print_r($persona);
@@ -30,7 +30,7 @@ $persona = $sentencia->fetch(PDO::FETCH_OBJ);
                 <div class="card-header text-center">
                     <b>Editar Datos</b>
                 </div>
-                <form class="p-4" method="POST" action="editar-proceso.php">
+                <form class="p-4" method="POST" action="../validation/edit-proceso.php">
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="txtNombre" autofocus required value="<?php echo $persona->nombre; ?>">

@@ -1,0 +1,25 @@
+:root{
+    --Purple: #474BF6;
+    --Purple_Blue: #3D68D4;
+    --LightBlue: #4FA4EB;
+    --Opaque_LightBlue: #3DB8D4;
+    --Very_LightBlue: #47F6E8;
+    --Background: #f2f2f2;
+}
+
+body{
+    background-color: var(--Background);
+}
+
+.header{
+    background-color: var(--LightBlue);
+    color: #fff;
+    padding: 1%;
+    box-shadow: 0 1px 5px 2px var(--Show_Gray);
+}
+
+.text-title{
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}

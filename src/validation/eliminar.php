@@ -7,17 +7,17 @@ if (!isset($_GET['codigo'])) {
 }
 
 
-include "model/conexion.php";
+include "../conexion/conexion.php";
 $codigo = $_GET['codigo'];
 
-$sentencia = $conexion->prepare('DELETE FROM persona WHERE id_codigo=?;');
+$sentencia = $DB->prepare('DELETE FROM persona WHERE id_codigo=?;');
 $ejecutar = $sentencia->execute([$codigo]);
 
 
 if ($ejecutar === TRUE) {
-    header('Location: index.php?mensaje=eliminado');
+    header('Location: ../../index.php?mensaje=eliminado');
 }else {
-    header('Location: index.php?mensaje=error');
+    header('Location: ../../index.php?mensaje=error');
 }
 
 
